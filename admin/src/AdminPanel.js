@@ -14,7 +14,6 @@ const AdminPanel = () => {
   });
   const [image, setImage] = useState(null);
 
-  // Fetch all products
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -27,17 +26,14 @@ const AdminPanel = () => {
     fetchProducts();
   }, []);
 
-  // Handle input change for the form
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Handle image file change
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
   };
 
-  // Add or Edit Product
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = new FormData();
@@ -46,7 +42,6 @@ const AdminPanel = () => {
     data.append('price', formData.price);
     data.append('category', formData.category);
   
-    // Only append image if a new one is selected
     if (image) data.append('image', image);
   
     try {
@@ -62,7 +57,6 @@ const AdminPanel = () => {
         alert('Product added successfully!');
       }
   
-      // Clear form and refresh products
       setFormData({ id: '', title: '', description: '', price: '', category: '' });
       setImage(null);
       setIsEditing(false);
@@ -75,7 +69,6 @@ const AdminPanel = () => {
     }
   };  
 
-  // Handle edit button click
   const handleEditClick = (product) => {
     setIsEditing(true);
     setFormData({
@@ -87,7 +80,6 @@ const AdminPanel = () => {
     });
   };
 
-  // Handle delete product
   const handleDelete = async (id) => {
     try {
       await axios.delete(`http://localhost:4000/products/delete/${id}`);
