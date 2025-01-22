@@ -77,7 +77,7 @@ const getUser = async (req, res) => {
 export const updateCart = async (req, res) => {
   try {
     const { cart } = req.body;
-    const userId = req.user._id; // Extracted from JWT
+    const userId = req.user._id;
 
     const user = await User.findById(userId);
     if (!user) {
@@ -122,7 +122,6 @@ export const placeOrder = async (req, res) => {
     
     await order.save();
 
-    // Clear user's cart after placing order
     const user = await User.findById(userId);
     user.cart = {};
     await user.save();

@@ -15,12 +15,10 @@ const ShopProvider = ({ children }) => {
   const [orders, setOrders] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
   const [tab, setTab] = useState(() => {
-    // Retrieve the tab from session storage, or default to "grocery"
     return sessionStorage.getItem('tab') || 'grocery';
   });
 
   useEffect(() => {
-    // Update session storage whenever the tab changes
     sessionStorage.setItem('tab', tab);
   }, [tab]);
 
@@ -31,12 +29,11 @@ const ShopProvider = ({ children }) => {
     }
     fetchProducts();
     fetchUserData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     getTotalCartValue();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line
   }, [cart, products])
 
   useEffect(() => {
@@ -56,7 +53,6 @@ const ShopProvider = ({ children }) => {
       }
   }
 
-  // Fetch all products
   const fetchProducts = async () => {
     try {
       const response = await axios.get('http://localhost:4000/products');
@@ -66,7 +62,6 @@ const ShopProvider = ({ children }) => {
     }
   };
 
-  // Save cart to backend
   const saveCartToBackend = async (updatedCart) => {
     const token = localStorage.getItem('token');
     if (!token) return;
@@ -94,7 +89,6 @@ const ShopProvider = ({ children }) => {
     }
   };
 
-  // Add product to cart
   const addToCart = (productId) => {
     if (!isLoggedIn) {
       alert('Please login to add products to the cart');
@@ -107,7 +101,6 @@ const ShopProvider = ({ children }) => {
     saveCartToBackend(updatedCart);
   };
 
-  // Decrease product quantity by 1
   const removeFromCart = (productId) => {
     if (!isLoggedIn) {
       alert('Please login to update the cart');
@@ -124,7 +117,6 @@ const ShopProvider = ({ children }) => {
     }
   };
 
-  // Remove product from cart completely
   const removeFromCartList = (productId) => {
     if (!isLoggedIn) {
       alert('Please login to update the cart');
@@ -138,7 +130,6 @@ const ShopProvider = ({ children }) => {
     saveCartToBackend(updatedCart);
   };
 
-  // Get total number of items in the cart
   const getTotalCartItems = () => {
     return Object.values(cart).reduce((total, quantity) => total + quantity, 0);
   };
@@ -165,7 +156,6 @@ const ShopProvider = ({ children }) => {
     }
   };  
 
-  // Login user
   const login = async (email, password) => {
     try {
       const response = await axios.post('http://localhost:4000/auth/login', { email, password });
@@ -186,7 +176,6 @@ const ShopProvider = ({ children }) => {
     }
   };
 
-  // Logout user
   const logout = () => {
     localStorage.removeItem('token');
     setUser(null);
@@ -197,7 +186,6 @@ const ShopProvider = ({ children }) => {
     window.location.href = 'login';
   };
 
-  // Fetch user data using token
   const fetchUserData = async () => {
     const token = localStorage.getItem('token');
     if (!token) return;

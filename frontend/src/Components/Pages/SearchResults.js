@@ -8,18 +8,17 @@ const SearchResults = () => {
   const [loading, setLoading] = useState(false);
 
   const fetchAndMatchProducts = async () => {
-    setLoading(true); // Start loading
+    setLoading(true);
     try {
-      // Match searchResults with products from context
       const matched = products.filter(product =>
         searchResults.includes(product.title)
       );
       console.log('Matched products:', matched);
-      setMatchedProducts(matched); // Update matched products
+      setMatchedProducts(matched);
     } catch (error) {
       console.error('Error fetching and matching products:', error.message);
     } finally {
-      setLoading(false); // End loading
+      setLoading(false);
     }
   };
 
@@ -27,7 +26,7 @@ const SearchResults = () => {
     if (searchResults.length > 0) {
       fetchAndMatchProducts();
     }// eslint-disable-next-line
-  }, [searchResults]); // Run when searchResults changes
+  }, [searchResults]);
 
   const handleSearch = () => {
     fetchMatchedProducts(query);

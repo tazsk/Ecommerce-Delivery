@@ -52,8 +52,6 @@ const editProduct = async (req, res) => {
             Key: oldImageKey,
           }).promise();
         }
-  
-        // Update with the new image URL
         updateFields.imageUrl = req.file.location;
       }
   
@@ -86,7 +84,6 @@ const deleteProduct = async (req, res) => {
       Key: imageKey,
     }).promise();
 
-    // Remove the product from all users' carts
     await User.updateMany({}, { $unset: { [`cart.${req.params.id}`]: "" } });
 
     res.status(200).json({ message: 'Product deleted successfully' });
@@ -100,7 +97,6 @@ const searchProducts = async (req, res) => {
   const { query } = req.body;
 
   try {
-    // Step 1: Get ingredients from OpenAI
     const messages = [
       {
         role: 'system',
@@ -123,8 +119,6 @@ const searchProducts = async (req, res) => {
     const resultArray = JSON.parse(response.choices[0].message.content.trim());
     const [foodName, ...ingredients] = resultArray;
     
-
-    // Step 2: Query the Python API
     const matchedProducts = await queryLlamaIndex(ingredients);
 
     res.status(200).json({ matchedProducts: matchedProducts });
