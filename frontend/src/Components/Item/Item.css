@@ -1,0 +1,18 @@
+.item {
+    width: 100px;
+}
+
+.item p {
+    margin: 6px 0px;
+}
+
+.item img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+}
+
+.item-prices {
+    display: flex;
+    gap: 20px;
+}

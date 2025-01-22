@@ -1,0 +1,17 @@
+.relatedproducts {
+    align-items: center;
+    gap: 10px;
+}
+
+.relatedproducts hr {
+    width: 200px;
+    height: 6px;
+    border-radius: 10px;
+}
+
+.related-items {
+    margin: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    row-gap: 80px;
+}

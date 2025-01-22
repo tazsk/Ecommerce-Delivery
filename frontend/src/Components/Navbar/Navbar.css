@@ -1,0 +1,74 @@
+.navbar {
+    display: flex;
+    gap: 150px;
+    align-items: center;
+    justify-content: center;
+    height: 70px;
+    width: 100%;
+    background: aliceblue;
+}
+
+.nav_menu {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 10px;
+    flex-wrap: nowrap;  /* Prevent wrapping */
+    white-space: nowrap;
+}
+
+.nav_menu hr {
+    height: 1px;
+    background: red;
+}
+
+.nav_menu li {
+    cursor: pointer;
+}
+
+.nav_login button {
+    height: 30px;
+    width: 50px;
+    outline: none;
+    border: 1px solid grey;
+    border-radius: 75px;
+    color: black;
+    background-color: white;
+    cursor: pointer;
+}
+
+.nav_login button:active {
+    background: whitesmoke;
+}
+
+.nav_login button hr {
+    height: 1px;
+    background: red;
+}
+
+.nav_logo {
+    padding-left: 15px;
+}
+
+.nav_cart {
+    padding-right: 15px;
+    margin-top: -30px;
+}
+
+.nav_cart h2 hr {
+    height: 1px;
+    background: red;
+}
+
+.nav_cart_count {
+    height: 15px;
+    width: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    margin-top: -50px;
+    margin-left: 50px;
+    background: red;
+    color: white;
+}
